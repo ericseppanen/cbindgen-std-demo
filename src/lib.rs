@@ -1,10 +1,4 @@
-#![no_std]
-
-#[cfg(not(test))]
-#[panic_handler]
-fn panic(_info: &core::panic::PanicInfo) -> ! {
-    loop {}
-}
+use std::ffi::CString;
 
 #[repr(C)]
 pub struct TestStruct {
@@ -27,8 +21,12 @@ pub extern "C" fn fill_buffer(buf: *mut u8, len: usize) {
     assert!(!buf.is_null());
     let buf = unsafe { core::slice::from_raw_parts_mut(buf, len as usize) };
 
-    let s = b"hello world\0";
-    buf[0..s.len()].copy_from_slice(s);
+    let s = format!("hello, {}", "world");
+
+    let s = CString::new(s).unwrap();
+    let sb = s.as_bytes_with_nul();
+
+    buf[0..sb.len()].copy_from_slice(sb);
 }
 
 #[no_mangle]
@@ -42,4 +40,3 @@ pub extern "C" fn fill_struct(ptr: *mut TestStruct) {
 pub extern "C" fn handle_enum(x: TestEnum) -> bool {
     x == TestEnum::Two
 }
-

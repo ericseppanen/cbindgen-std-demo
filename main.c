@@ -1,6 +1,6 @@
 
 //  > cargo build --release
-//  > gcc -O2 -Wl,--gc-sections main.c target/release/libdemo.a -o demo
+//  > gcc -O2 -Wl,--gc-sections -pthread main.c target/release/libdemo.a -ldl -o demo
 //  > strip demo
 //  > ./demo
 //
