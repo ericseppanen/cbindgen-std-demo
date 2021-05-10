@@ -4,9 +4,9 @@ If you're new to Rust FFI, or if you're using [cbindgen](https://github.com/eqri
 
 If you're lazy like me, you might want to start with a sample project, already set up for `no_std`, `staticlib`, `panic="abort"`, and a working `build.rs`.
 
-This version does not include the Rust `std` library. If you want a library that does support `std`, check out [cbindgen-std-demo](https://github.com/ericseppanen/cbindgen-std-demo).
-
 This is a simple Rust library, with a few constants and data structures that can be used from C code. It also includes a C program that calls some of that library's functions.
+
+This version does not include the Rust `std` library. If you want a library that does support `std`, check out [cbindgen-std-demo](https://github.com/ericseppanen/cbindgen-std-demo). There is also a version that adds `alloc` support without the full `std` library: [cbindgen-alloc-demo](https://github.com/ericseppanen/cbindgen-alloc-demo).
 
 How to build it:
 ```text
